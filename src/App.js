@@ -1,15 +1,19 @@
-import React from 'react';
-//import "bootstrap/dist/css/bootstrap.min.css";
-import  {BrowserRouter as Router, Route} from "react-router-dom";
+import React, {Component} from 'react';
 import "./App.css"
-
-
-function App(){
-  return (
+import { Navbar, NavbarBrand } from 'reactstrap';
+ 
+class App extends Component{
+  render(){
+    return (
       <div className="App">
-        Welcome to React      
+            <Navbar dark color="primary">
+              <div className="container">
+                <NavbarBrand href="/">Confusion Restaurant</NavbarBrand> 
+              </div>
+            </Navbar>
       </div>
-  );
+    )
+  }
 }
 
 export default App;
