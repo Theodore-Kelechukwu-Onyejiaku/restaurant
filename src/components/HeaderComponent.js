@@ -1,14 +1,16 @@
 import React, {Component} from "react";
-import { Navbar, NavbarBrand, Jumbotron } from 'reactstrap';
-
-
+import {Navbar, NavbarBrand, Jumbotron } from "reactstrap"
 
 class Header extends Component{
     render(){
         return(
-            <>
-                
-                <Jumbotron>
+            <React.Fragment>
+                <Navbar dark>
+                    <div className="container">
+                        <NavbarBrand href="/">Ristorante Confusion</NavbarBrand> 
+                    </div>
+                </Navbar>
+                <Jumbotron style={{backgroundColor: "#9575CD"}}>
                     <div className="container">
                         <div className="row row-header">
                             <div className="col-12 col-sm-6">
@@ -18,11 +20,9 @@ class Header extends Component{
                         </div>
                     </div>
                 </Jumbotron>
-            </>
-
+            </React.Fragment>
         )
     }
 }
-
 
 export default Header;
