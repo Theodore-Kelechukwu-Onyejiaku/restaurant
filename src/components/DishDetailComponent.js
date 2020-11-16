@@ -1,5 +1,7 @@
 import React from "react";
-import { Card, CardImg, CardText, CardBody, CardTitle } from "reactstrap";
+import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem } from "reactstrap";
+import {Link} from "react-router-dom";
+
 
 function RenderDish({ dish }) {
   return (
@@ -15,23 +17,23 @@ function RenderDish({ dish }) {
   );
 }
 
-function RenderComments({ dish }){
+function RenderComments({ comments }){
   return (
     <div className="col-12 col-md-5  m-1">
       <div>
         <h3>Comments</h3>
         <ol className="list-unstyled">
-          {dish.comments.map((each_comment) => {
+          {comments.map((comment) => {
             return (
               <li className="m-3">
-                {each_comment.comment}
+                {comment.comment}
                 <br />
-                -- {each_comment.author},{" "}
+                -- {comment.author},{" "}
                 {new Intl.DateTimeFormat("en-US", {
                   year: "numeric",
                   month: "short",
                   day: "2-digit",
-                }).format(new Date(Date.parse(each_comment.date)))}
+                }).format(new Date(Date.parse(comment.date)))}
               </li>
             );
           })}
@@ -45,12 +47,24 @@ const DishDetail = (props) => {
     return <div></div>;
   } else {
     return (
-      <div className="row">
+      
         <div className="container">
-          <RenderDish dish={props.dish} />
-          <RenderComments dish={props.dish} />
+            <div className="row">
+                <Breadcrumb>
+                    <BreadcrumbItem> <Link to="/menu">Menu</Link> </BreadcrumbItem>
+                    <BreadcrumbItem active> {props.dish.name} </BreadcrumbItem>
+                </Breadcrumb>
+                <div className="col-12">
+                <h3>{props.dish.name}</h3>
+                    <hr />
+                </div>
+            </div>
+            <div className="row">
+                <RenderDish dish={props.dish} />
+                <RenderComments comments={props.comments} />
+            </div>
         </div>
-      </div>
+      
     );
   }
 };
