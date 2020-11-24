@@ -81,7 +81,8 @@ class Header extends Component{
                 </Navbar> 
                 <Jumbotron style={{backgroundColor: "#9575CD"}}>
                     <div className="container">
-                        <div className="row row-header">
+                        <div className=
+                        "row row-header">
                             <div className="col-12 col-sm-6">
                                 <h1>Ristorante Confusion</h1>
                                 <p>We take inspiration from the world's best cuisines, and create a unique fusion experience. Our lipsmacking creations will tickle your culinary senses!</p>
@@ -111,7 +112,7 @@ class Header extends Component{
                         </Form>
                     </ModalBody>
                 </Modal>
-            </React.Fragment>
+            </React.Fragment> 
         )
     }
 }
