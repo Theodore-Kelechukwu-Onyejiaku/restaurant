@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem,Button, Modal, ModalHeader, ModalBody, Row, Label, Col } from "reactstrap";
 import { LocalForm, Control, Errors } from "react-redux-form";
 import {Link} from "react-router-dom";
+import { baseUrl } from "../shared/baseUrl";
+
 
 import { Loading } from "./LoadingComponent"
 
@@ -34,7 +36,7 @@ class CommentForm extends Component{
     render(){
         return(
             <React.Fragment>
-                <Button onClick={this.toggleModal}>
+                <Button outline onClick={this.toggleModal}>
                     <span className="fa fa-pencil fa-lg"></span>{" "}Submit Comment
                 </Button>
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
@@ -87,7 +89,7 @@ function RenderDish({ dish }) {
   return (
     <div className="col-12 col-md-5  m-1">
       <Card>
-        <CardImg width="100%" src={dish.image} alt={dish.image}></CardImg>
+        <CardImg width="100%" src={baseUrl + dish.image} alt={dish.image}></CardImg>
         <CardBody>
           <CardTitle>{dish.name}</CardTitle>
           <CardText>{dish.description}</CardText>
@@ -145,7 +147,11 @@ const DishDetail = (props) => {
       </div>
     )
   }
-  else if (props.dish != null) {
+  else if (props.dish == null) {
+    return (<div></div>)
+
+  }
+  else
     return (
       
         <div className="container">
@@ -169,9 +175,5 @@ const DishDetail = (props) => {
       
     );
   }
-  else {
-    return (<div></div>)
-  }
-};
 
 export default DishDetail;
