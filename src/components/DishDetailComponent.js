@@ -3,6 +3,7 @@ import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbIte
 import { LocalForm, Control, Errors } from "react-redux-form";
 import {Link} from "react-router-dom";
 import { baseUrl } from "../shared/baseUrl";
+import {FadeTransform, Fade, Stagger } from "react-animation-components"
 
 
 import { Loading } from "./LoadingComponent"
@@ -70,6 +71,7 @@ class CommentForm extends Component{
                                     <Control.textarea model=".comment" id="comment" name="comment" rows="12" className="form-control"/>
                                 </Col>
                             </Row>
+                            
                             <Row className="form-group">
                                 <Col md={{size: 6}}>
                                     <Button type="submit" color="primary">Submit</Button>
@@ -88,13 +90,15 @@ class CommentForm extends Component{
 function RenderDish({ dish }) {
   return (
     <div className="col-12 col-md-5  m-1">
-      <Card>
-        <CardImg width="100%" src={baseUrl + dish.image} alt={dish.image}></CardImg>
-        <CardBody>
-          <CardTitle>{dish.name}</CardTitle>
-          <CardText>{dish.description}</CardText>
-        </CardBody>
-      </Card>
+      <FadeTransform in transformProps={{exitTransform: "scale(0.5) translateY(-50%)"}}>
+        <Card>
+          <CardImg width="100%" src={baseUrl + dish.image} alt={dish.image}></CardImg>
+          <CardBody>
+            <CardTitle>{dish.name}</CardTitle>
+            <CardText>{dish.description}</CardText>
+          </CardBody>
+        </Card>
+      </FadeTransform>
     </div>
   );
 }
@@ -105,25 +109,27 @@ function RenderComments({ comments, postComment, dishId }){
       <div>
         <h3>Comments</h3>
         <ol className="list-unstyled">
+          <Stagger in>
           {comments.map((comment) => {
             return (
-              <li className="m-3">
-                {comment.comment}
-                <br />
-                -- {comment.author},{" "}
-                {new Intl.DateTimeFormat("en-US", {
-                  year: "numeric",
-                  month: "short",
-                  day: "2-digit",
-                }).format(new Date(Date.parse(comment.date)))}
-                <br/>
-                
-              </li>
-              
+              <Fade in>
+                <li className="m-3">
+                  {comment.comment}
+                  <br />
+                  -- {comment.author},{" "}
+                  {new Intl.DateTimeFormat("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "2-digit",
+                  }).format(new Date(Date.parse(comment.date)))}
+                  <br/>
+                </li>
+              </Fade>
             );
           })}
-          <CommentForm dishId={dishId} postComment={postComment}/>
+          </Stagger>
         </ol>
+        <CommentForm dishId={dishId} postComment={postComment}/>
       </div>
     </div>
   );

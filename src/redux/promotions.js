@@ -6,7 +6,6 @@ export const Promotions = (state = {
     promotions: []
 }, action) =>{
     switch(action.type) {
-
         case ActionTypes.ADD_PROMOS:
             return  {...state, isLoading: false, errMess: null, promotions: action.payload };
 
