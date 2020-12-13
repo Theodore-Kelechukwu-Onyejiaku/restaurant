@@ -8,7 +8,6 @@ import {FadeTransform, Fade, Stagger } from "react-animation-components"
 
 import { Loading } from "./LoadingComponent"
 
-const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
 const minLength = (len) => (val) => (val) && (val.length >= len);
 
